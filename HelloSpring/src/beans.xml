@@ -9,4 +9,13 @@
        <property name="message" value="Hello World!"/>
    </bean>
 
+	<!-- 声明了一个Bean -->
+	<bean id="userDAO" class="dao.UserDAOImpl"></bean>
+	
+	<!-- 配置创建UserBizImpl的实例 -->
+	<bean id="userBiz" class="biz.UserBizImpl">
+		<!-- 将userDAO注入到userBiz -->
+		<property name="user" ref="userDAO"></property>
+	</bean>
+	
 </beans>
