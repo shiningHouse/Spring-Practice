@@ -29,9 +29,9 @@
 		<property name="user" ref="userDAO"></property>
 	</bean>
 	
-	<!-- 自定义前置通知 -->
+	<!-- 通知 -->
 	<bean id="logAdviceBefore" class="aop.LogAdviceBefore"></bean>
-
+	<bean id="logAdviceAfter" class="aop.LogAdviceAfter"></bean>
 	<bean id="logProxy" class="org.springframework.aop.framework.ProxyFactoryBean">  
   
         <property name="proxyInterfaces">  
@@ -43,7 +43,8 @@
   
         <property name="interceptorNames">  
             <list>  
-                <value>logAdviceBefore</value>  
+                <value>logAdviceBefore</value> 
+                <value>logAdviceAfter</value> 
             </list>  
         </property>  
     </bean>

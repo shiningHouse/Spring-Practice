@@ -14,7 +14,7 @@ public class LogAdviceBefore implements MethodBeforeAdvice{
 		String targetClassName = target.getClass().getName();
 		String targetMethodName = method.getName();
 		
-		String logInfoText = String.format("前置通知：%s类的%s方法开始执行", targetClassName,targetMethodName);
+		String logInfoText = String.format("[前置通知]：%s类的%s方法开始执行", targetClassName,targetMethodName);
 		logger.info(logInfoText);
 	}
 
