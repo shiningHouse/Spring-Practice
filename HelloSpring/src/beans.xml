@@ -2,36 +2,51 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    
     xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
-     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
-     
-     http://www.springframework.org/schema/context 
-     http://www.springframework.org/schema/context/spring-context-3.1.xsd
-     ">
+    xsi:schemaLocation="http://www.springframework.org/schema/beans    
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+     http://www.springframework.org/schema/context   
+     http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
+	
+	<bean id="helloWorld" class="com.HelloWorld">
+       <property name="message" value="Hello World!"/>
+    </bean>
+    
     <!-- 配置Spring注解器 -->
     <!-- 开启Spring注解器 -->
     <context:annotation-config/>
-    <!-- 配置创建UserDAOImpl的实例 - -->
-	<bean id="userDAO" class="dao.UserDAOImpl" scope="singleton"></bean>
+
 	<!-- 配置创建userBizImplByAnnotation实例  -->
     <bean id="userBizImplByAnnotation"
     	class="annotation_test.UserBizImplByAnnotation"></bean>
 
-	
+	<!-- 配置创建UserDAOImpl的实例 - -->
+	<bean id="userDAO" class="dao.UserDAOImpl" scope="singleton"></bean>
 	<!-- 配置创建UserBizImpl的实例 -->
 	<bean id="userBiz" class="biz.UserBizImpl">
 		<!-- 将userDAO注入到userBiz -->
 		<property name="user" ref="userDAO"></property>
 	</bean>
+	
+	<!-- 自定义前置通知 -->
+	<bean id="logAdviceBefore" class="aop.LogAdviceBefore"></bean>
 
-	<bean id="helloWorld" class="com.HelloWorld">
-       <property name="message" value="Hello World!"/>
+	<bean id="logProxy" class="org.springframework.aop.framework.ProxyFactoryBean">  
+  
+        <property name="proxyInterfaces">  
+            <value>biz.UserBiz</value>  
+        </property>  
+  
+        <property name="target" ref="userBiz">  
+        </property>  
+  
+        <property name="interceptorNames">  
+            <list>  
+                <value>logAdviceBefore</value>  
+            </list>  
+        </property>  
     </bean>
-    
-
 
     	
 </beans>

@@ -18,5 +18,15 @@ public class UserBizImplByAnnotation implements UserBiz{
 	public boolean login(String username, String password) {
 		return userDAO.login(username, password);
 	}
+	@Override
+	public void addUser(String username, String password) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteUser(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

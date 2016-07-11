@@ -7,11 +7,9 @@ import biz.UserBiz;
 
 public class TestSpringDIByAnnotation {
 
-	public static void main(String args[])
-	{
+	public static void main(String args[]){
 		new TestSpringDIByAnnotation().springDIByAnotation();
 	}
-
 	public void springDIByAnotation()
 	{
 		ApplicationContext context = 
@@ -24,8 +22,8 @@ public class TestSpringDIByAnnotation {
 		}else{
 			System.out.println("µÇÂ¼Ê§°Ü");
 		}
-		
-		
 	}
+	
+	
 }
 
